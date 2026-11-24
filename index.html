@@ -7,13 +7,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <h1>Read and feed</h1>
-
   <main>
-    <img src="images/Pbox body.png" alt="Describe your image here">
-    <img2 src="images/Pbox mouth.png" alt="Describe your image here">
+    <img id="pbox" src="images/New Pbox rest.png" alt="Pbox character resting">
+    <!-- This invisible target is positioned over the upper part of Pbox by script.js. -->
+    <div id="pbox-trigger" aria-hidden="true"></div>
   </main>
+
+  <!-- Four separate Letter objects surround Pbox and can be dragged with the mouse. -->
+  <div class="letter letter-left-top" aria-label="Draggable letter"><img src="images/Letter.png" alt=""></div>
+  <div class="letter letter-left-bottom" aria-label="Draggable letter"><img src="images/Letter.png" alt=""></div>
+  <div class="letter letter-right-top" aria-label="Draggable letter"><img src="images/Letter.png" alt=""></div>
+  <div class="letter letter-right-bottom" aria-label="Draggable letter"><img src="images/Letter.png" alt=""></div>
 
   <script src="script.js"></script>
 </body>

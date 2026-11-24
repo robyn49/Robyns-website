@@ -4,52 +4,89 @@
   padding: 0;
 }
 
+html,
 body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* The fixed viewport prevents the landing page from scrolling. */
+}
+
+body {
+  position: relative;
   font-family: system-ui, sans-serif;
   background: #B3C478;
   color: #111;
-  overflow: hidden;
-}
-
-h1 {
-  text-align: center;
-  padding: 0.5rem 0.5rem;
-  font-size: 3rem;
-}
-
-h2 {
-  text-align: center;
-  padding: 2rem 2rem;
-  font-size: 1.5rem;
-}
-
-h3 {
-  text-align: center;
-  padding: 0.0005rem 0.0005rem;
-  font-size: 10rem;
 }
 
 main {
-  flex: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0rem 0rem 0rem;
+  position: absolute;
+  inset: 0;
+  /* Position the character from the bottom while keeping it centred. */
 }
 
 img {
   display: block;
-  max-width: 100vw;
-  max-height: 100vh;
-  object-fit: fill;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
-img2 {
-  display: inside;
-  max-width: 100vw;
-  max-height: 100vh;
-  object-fit: fill;
+#pbox-trigger {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.letter {
+  position: absolute;
+  z-index: 2;
+  width: clamp(180px, 22vw, 340px);
+  aspect-ratio: 2360 / 1640;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  transition: left 0.35s ease, top 0.35s ease;
+  /* Letter.png uses no additional rotation in its default appearance. */
+  /* Each letter starts in a fixed position, then follows the pointer when dragged. */
+}
+
+.letter img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.letter.dragging {
+  cursor: grabbing;
+  z-index: 10;
+  transition: none;
+}
+
+.letter.eaten {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.letter-left-top {
+  left: 18%;
+  top: 32%;
+}
+
+.letter-left-bottom {
+  left: 23%;
+  top: 68%;
+}
+
+.letter-right-top {
+  left: 82%;
+  top: 32%;
+}
+
+.letter-right-bottom {
+  left: 77%;
+  top: 68%;
 }
