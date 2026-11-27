@@ -9,20 +9,85 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  /* The fixed viewport prevents the landing page from scrolling. */
 }
 
 body {
-  position: relative;
   font-family: system-ui, sans-serif;
   background: #B3C478;
   color: #111;
+  /* Use the supplied artwork as the pointer throughout the landing page. */
+  cursor: url("images/Custom mouse raster.png") 3 3, auto;
+}
+
+#scene-viewport {
+  position: fixed;
+  inset: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* The wide scene can be panned horizontally without vertical page movement. */
 }
 
 main {
+  position: relative;
+  width: max(100vw, calc(100vh * 3.09329268));
+  height: 100vh;
+  /* Keep the map at its wide aspect ratio and place interactions in the center. */
+}
+
+#landing-background {
   position: absolute;
   inset: 0;
-  /* Position the character from the bottom while keeping it centred. */
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#map-letters {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* These transparent overlays share the background map's full-size canvas. */
+}
+
+.map-letter-link {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.map-letter-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center center;
+}
+
+.map-letter-link:focus-visible img {
+  filter: drop-shadow(0 0 8px #fff);
+}
+
+#interactive-area {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  z-index: 2;
+  transform: translateX(-50%);
+  /* Keep the Pbox aligned with the initial map view while it scrolls with the scene. */
+}
+
+#pbox {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 img {
@@ -33,60 +98,96 @@ img {
   object-position: center bottom;
 }
 
-#pbox-trigger {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+body.letter-page {
+  background: #000;
+  cursor: default;
 }
 
-.letter {
-  position: absolute;
-  z-index: 2;
-  width: clamp(180px, 22vw, 340px);
-  aspect-ratio: 2360 / 1640;
-  cursor: grab;
-  touch-action: none;
-  user-select: none;
-  transform: translate(-50%, -50%);
-  transition: left 0.35s ease, top 0.35s ease;
-  /* Letter.png uses no additional rotation in its default appearance. */
-  /* Each letter starts in a fixed position, then follows the pointer when dragged. */
-}
-
-.letter img {
+#opened-letter {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center center;
+}
+
+#open-letter {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: #000;
+  cursor: pointer;
+}
+
+#letter-reading {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+#letter-reading img {
+  width: 100%;
+  height: auto;
+  object-fit: initial;
+  object-position: initial;
+}
+
+body.pbox-page {
+  background: #000;
+}
+
+#closeup-pbox {
+  position: fixed;
+  top: 95%;
+  left: 50%;
+  width: 140vw;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  /* Current placement trial: horizontally centered, top at 95%, scaled to 140vw. */
+  /* Zoom the close-up so Pbox's face fills the page behind the envelope. */
+}
+
+#pbox-letter {
+  position: fixed;
+  top: 65%;
+  left: 53%;
+  z-index: 1;
+  width: 61vw;
+  aspect-ratio: 2360 / 1640;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  /* The source PNG has transparent margins around the visible envelope. */
+  cursor: url("images/Custom mouse raster.png") 3 3, auto;
+  touch-action: none;
+  user-select: none;
+  transform: translate(-50%, -50%);
+}
+
+#pbox-letter img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
   pointer-events: none;
 }
 
-.letter.dragging {
-  cursor: grabbing;
-  z-index: 10;
-  transition: none;
+#return-animation {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  object-fit: cover;
+  object-position: center center;
 }
 
-.letter.eaten {
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.letter-left-top {
-  left: 18%;
-  top: 32%;
-}
-
-.letter-left-bottom {
-  left: 23%;
-  top: 68%;
-}
-
-.letter-right-top {
-  left: 82%;
-  top: 32%;
-}
-
-.letter-right-bottom {
-  left: 77%;
-  top: 68%;
-}

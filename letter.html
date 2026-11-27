@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="letter-page">
+  <!-- The envelope remains behind the letter contents after it is opened. -->
+  <button id="open-letter" type="button" aria-label="Read the letter">
+    <img id="opened-letter" src="images/Letter.png" alt="">
+  </button>
+  <div id="letter-reading" role="region" aria-label="Letter contents" tabindex="0" hidden>
+    <a href="pbox.html" aria-label="Continue to Pbox">
+      <img src="images/Letter read transparent.png" alt="Handwritten letter">
+    </a>
+  </div>
+  <script src="letter.js"></script>
+</body>
+</html>

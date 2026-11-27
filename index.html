@@ -7,17 +7,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <img id="pbox" src="images/New Pbox rest.png" alt="Pbox character resting">
-    <!-- This invisible target is positioned over the upper part of Pbox by script.js. -->
-    <div id="pbox-trigger" aria-hidden="true"></div>
-  </main>
-
-  <!-- Four separate Letter objects surround Pbox and can be dragged with the mouse. -->
-  <div class="letter letter-left-top" aria-label="Draggable letter"><img src="images/Letter.png" alt=""></div>
-  <div class="letter letter-left-bottom" aria-label="Draggable letter"><img src="images/Letter.png" alt=""></div>
-  <div class="letter letter-right-top" aria-label="Draggable letter"><img src="images/Letter.png" alt=""></div>
-  <div class="letter letter-right-bottom" aria-label="Draggable letter"><img src="images/Letter.png" alt=""></div>
+  <div id="scene-viewport">
+    <main id="scene">
+      <!-- The map fills the wide scene, while the interaction layer stays viewport-sized. -->
+      <img id="landing-background" src="images/Background placeholder.png" alt="">
+      <div id="map-letters" role="group" aria-label="Letters placed on the map">
+        <a class="map-letter-link" href="letter.html" aria-label="Open letter A">
+          <img src="images/Letter map A.png" alt="">
+        </a>
+        <a class="map-letter-link" href="letter.html" aria-label="Open letter B">
+          <img src="images/Letter map B.png" alt="">
+        </a>
+        <a class="map-letter-link" href="letter.html" aria-label="Open letter C">
+          <img src="images/Letter map C.png" alt="">
+        </a>
+        <a class="map-letter-link" href="letter.html" aria-label="Open letter D">
+          <img src="images/Letter map D.png" alt="">
+        </a>
+      </div>
+      <div id="interactive-area">
+        <img id="pbox" src="images/New Pbox rest.png" alt="Pbox character resting">
+      </div>
+    </main>
+  </div>
 
   <script src="script.js"></script>
 </body>

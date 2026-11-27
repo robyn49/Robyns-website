@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pbox</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pbox-page">
+  <!-- The close-up fills the screen, with a draggable letter in front of Pbox. -->
+  <img id="closeup-pbox" src="images/New Pbox rest.png" alt="Pbox resting">
+  <button id="pbox-letter" type="button" aria-label="Drag the letter">
+    <img src="images/Letter.png" alt="">
+  </button>
+  <!-- This full-screen animation plays after the letter is dropped. -->
+  <video
+    id="return-animation"
+    src="animations/Back to landing page animation.mp4"
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+    hidden
+  ></video>
+  <script src="pbox.js"></script>
+</body>
+</html>
